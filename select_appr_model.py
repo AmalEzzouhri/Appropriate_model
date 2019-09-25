@@ -67,7 +67,7 @@ def detect_by_cnn(croped_roi,model_id,config):
 def relative_to_absolute(relative_detections,bb,h_padding,w_padding):
 	
 	abs_dets=[]
-	for rel_det in xrange relative_detections:
+	for rel_det in relative_detections:
 		xmin,xmax,ymin,ymax = rel_det	
 
 		abs_xmin = xmin + w_padding + bb[0]
