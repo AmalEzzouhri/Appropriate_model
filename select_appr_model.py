@@ -28,15 +28,16 @@ def select_model(bb,config):
 	dist_list = []
 
 	for ctr in config.clusters_centroid:
-		ed=(ctr[0]-w)^2+(ctr[1]-H)^2
+		ed=(ctr[0]-H)^2+(ctr[1]-W)^2
 		dist_list.append(ed)
 
 	(m,i) = min((v,i) for i,v in enumerate(dist_list))
-	proposed_h,proposed_w,c=config.input_shapes[i+1]
+	proposed_h,proposed_w,c = config.input_shapes[i]
+	
 	if W<=proposed_w and H<=proposed_h:		
-		return i+1 # id 0 is for the main detector using the entire image
+		return i # id 0 is for the main detector using the entire image
 	else:
-		return 0
+		return len(config.clusters_centroid)
 
 def normalize_shape(croped_roi,expected_shape):
 	h,w,c=croped_roi.shape
